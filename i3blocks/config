@@ -28,3 +28,8 @@ label=[DATE] :
 command=date +'%m/%d(%a) %H:%M '
 color=#c5c8c6
 interval=1
+
+[battery]
+command=~/.config/i3blocks/battery.sh
+format=json
+interval=persist
