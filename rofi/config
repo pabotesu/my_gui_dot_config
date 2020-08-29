@@ -1,0 +1,7 @@
+rofi.modi:  run,system:~/.config/rofi/rofi_system.sh
+rofi.sidebar-mode:  true
+rofi.hide-scrollbar: true
+rofi.kb-cancel: Escape,Control+bracketleft
+rofi.kb-mode-previous: Shift+Left
+rofi.kb-mode-next: Shift+Right
+rofi.theme: /usr/share/rofi/themes/arthur.rasi
