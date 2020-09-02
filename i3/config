@@ -248,7 +248,7 @@ exec --no-startup-id dunst
 bindsym --release Shift+Print exec "~/.config/i3/scregcp.sh -s ~/Pictures/screenshots/"
 
 # take a screenshot of a whole window and copy it to a clipboard
-bindsym --release Print exec "~/.config/i3/scregcp ~/Pictures/screenshots/"
+bindsym --release Print exec "~/.config/i3/scregcp.sh ~/Pictures/screenshots/"
 
 #CapsLock 2 CTL
 exec --no-startup-id xmodmap ~/.Xmodmap
