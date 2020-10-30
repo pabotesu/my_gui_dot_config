@@ -1,31 +1,31 @@
 [network]
-label=[INET] : 
+label=[INET] ➤ 
 command=~/.config/i3blocks/network.sh
 color=#c5c8c6
 interval=1
 
 [disk]
-label=[DISK] : 
+label=[DISK] ➤
 command=df -h | grep /home | awk '{print substr($0, 35)}'
 color=#c5c8c6
 interval=1
 
 [memory]
-label=[RAM] : 
+label=[RAM] ➤ 
 command=~/.config/i3blocks/memory.py
 #command=free -h | awk 'match($0, /^Mem/){print $3 " / " $2}'
 color=#c5c8c6
 interval=1
 
 [load average]
-label=[LOAD] : 
+label=[LOAD] ➤ 
 command=echo "$(uptime | sed 's/.*load average: \(.*\)/\1/' | cut -d, -f1)/$(grep 'processor' /proc/cpuinfo | wc -l)"
 color=#c5c8c6
 interval=1
 
 [date]
-label=[DATE] : 
-command=date +'%m/%d(%a) %H:%M '
+label=[DATE] ➤ 
+command=date +'%m/%d(%a) %H:%M'
 color=#c5c8c6
 interval=1
 

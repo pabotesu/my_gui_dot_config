@@ -4,7 +4,7 @@ set -euCo pipefail
 
 function online_icon() {
   [[ $# -eq 0 ]] && return 1
-  local -ar icons=('😆⚡' '😄⚡' '😃⚡' '😂⚡' '🙏⚡')
+  local -ar icons=('[/....]⚡' '[//...]⚡' '[///..]⚡' '[////.]⚡' '[/////]⚡')
   local index
   index=$(expr $1 % ${#icons[@]})
   echo ${icons[${index}]}
@@ -25,16 +25,16 @@ function get_battery() {
 function online() {
   [[ $(cat /sys/class/power_supply/AC/online) -eq 1 ]] \
     && return 0
-  return 1
+  return 
 }
 
 function main() {
   local -Ar \
-    high=( ['value']=79 ['icon']='😆' ['color']='#08d137') \
-    high_middle=( ['value']=59 ['icon']='😄' ['color']='#08d137') \
-    middle=( ['icon']='😃' ['color']='#08d137') \
-    low_middle=( ['value']=39 ['icon']='😂' ['color']='#08d137') \
-    low=( ['value']=19 ['icon']='😇' ['color']='#f73525')
+    high=( ['value']=79 ['icon']='[/////] ➤' ['color']='#4db56a') \
+    high_middle=( ['value']=59 ['icon']='[////.] ➤' ['color']='#4db56a') \
+    middle=(['value']=39 ['icon']='[///..] ➤' ['color']='#4db56a') \
+    low_middle=( ['value']=19 ['icon']='[//...] ➤' ['color']='#f0c674') \
+    low=( ['icon']='[/....] ➤' ['color']='#cc6666')
 
   local online_icon='' cnt=0
   while sleep 1; do
@@ -59,19 +59,20 @@ function main() {
     
     elif [[ ${battery} -gt ${high_middle['value']} ]];then
       echo_battery \
-        "${online_icon:-${high_middle['icon']}} ${battery}%" ${high['color']}
+        "${online_icon:-${high_middle['icon']}} ${battery}%" ${high_middle['color']}
     
-    elif [[ ${battery} -gt ${low_middle['value']} ]];then
-      echo_battery \
-        "${online_icon:-${low_middle['icon']}} ${battery}%" ${high['color']}
-
-    elif [[ ${battery} -lt ${low['value']} ]];then
-      echo_battery \
-        "${online_icon:-${low['icon']}} ${battery}%" ${low['color']}
-    
-    else
+    elif [[ ${battery} -gt ${middle['value']} ]];then
       echo_battery \
         "${online_icon:-${middle['icon']}} ${battery}%" ${middle['color']}
+ 
+    elif [[ ${battery} -gt ${low_middle['value']} ]];then
+      echo_battery \
+        "${online_icon:-${low_middle['icon']}} ${battery}%" ${low_middle['color']}
+   
+    else
+       echo_battery \
+        "${online_icon:-${low['icon']}} ${battery}%" ${low['color']}
+ 
     fi
   done
 }
